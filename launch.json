@@ -1,0 +1,234 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        
+
+        //OPEN_UNMIX PARAMS
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+
+
+            "linux": {
+                
+                // //TRAINING 
+                // "args": [ 
+                    
+
+                //     "--root" , 
+                //     //"/home/nnanos/open-unmix-pytorch/musdb18_wav",
+                //     "/media/nnanos/CC005DEA005DDBD0/musdb18_wav_small",
+                //     //"/home/nnanos/ramdisk",
+                //     //"/home/nnanos/open-unmix-pytorch/musdb18_wav_small",
+                //     "--is-wav",
+
+                    
+                //     // "/home/nnanos/open-unmix-pytorch/AlignedDataset",
+                    
+                //     // "--dataset",
+                //     // "aligned",
+
+                //     // "--input-file",
+                //     // "mixture.wav",
+                //     // "--output-file",
+                //     // "vocals.wav",
+                    
+                    
+            
+                //     "--target", 
+                //     "vocals",
+                //     // "--epochs", 
+                //     // "20",
+                //     // "--output" ,
+                //     // "open_unmix_test_vocals_full",
+                //     // "--batch-size",
+                //     // "16",
+                //     // "--nb-workers",
+                //     // "4"
+                //     //"--no-cuda"
+                // ]
+
+                //EVALUATE
+                "args": [
+                    "--targets",
+                    "vocals","drums","bass","other",
+
+                    "--is-wav",
+
+                    "--model",
+                    "/home/nnanos/Desktop/Open_unmix_model_params/mymodel",
+
+                    "--root" , 
+                    "/home/nnanos/open-unmix-pytorch/musdb_wav_small",                    
+
+
+                    "--outdir",
+                    "/home/nnanos/Desktop/Open_unmix_model_params/outdir",
+
+                    "--evaldir",
+                    "/home/nnanos/Desktop/Open_unmix_model_params/evaldir",
+
+                    "--cores",
+                    "1"
+                    
+                ],
+                
+                // //INFERENCE FOR ONE SONG
+                // "args": [
+                //     "mani_seg_without_voice.wav",
+                //     "--targets",
+                //     "drums",
+                //     "--model",
+                //     "/home/nnanos/open-unmix-pytorch/open_unmix_test",
+                    
+                //     "--outdir",
+                //     "/home/nnanos/open-unmix-pytorch/open_unmix_test/eval_test"
+                    
+                // ]
+             
+            }
+
+        },
+
+        // {
+        //     "name": "Python: Current File",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${file}",
+        //     "console": "integratedTerminal",
+
+        //     "linux": {
+
+                
+        //         // front_end_lookup ={
+        //         //     "STFT_custom":STFT_CUSTOM,
+        //         //     "librosa":librosa,
+        //         //     "scipy":scipy.signal,
+        //         //     "nsgt_grr":nsg,
+        //         //     "NSGT_CQT":NSGT_cqt,
+        //         //     "NSGT_SCALE_FRAMES":scale_frame
+        //         // }
+
+        //         // oracle_mthd_lookup ={
+        //         //     "IRM":IRM,
+        //         //     "IBM":IBM,
+        //         //     "MWF":MWF,
+        //         //     "MIX":MIX
+            
+        //         // }    
+
+        //         // eval_mthd_lookup ={
+        //         //     "BSS_eval_mus_track":museval.eval_mus_track,
+        //         //     "BSS_evaluation":museval.evaluate,
+        //         //     "mir_eval":mir_eval.separation.bss_eval_sources,
+        //         //     "BSSeval_custom":BSSeval_custom.evaluation
+            
+        //         // }    
+
+
+        //         // aggregation_method_lookup = {
+        //         //     "median":np.median,
+        //         //     "mean":np.mean
+        //         // }
+                
+                
+        //         "args": [ 
+
+        //             "-a",
+                    
+        //             //IBM
+        //             //"{ est_mthd_name : IBM , theta : 0.5 , alpha : 1  }",
+
+        //             //IRM
+        //             "{ est_mthd_name : IRM , alpha : 1  }",
+
+        //             //HPSS
+        //             //"{ est_mthd_name : HPSS , filter_len_harm : 51 , filter_len_per : 51 , alpha : 1 }",
+
+
+        //             "-b",
+        //             "{  aggregation_method : median , eval_mthd : BSS_eval_mus_track , nb_chan : 2 , hop : 44100 , win : 44100 }",
+                    
+
+        //             //Note For the HPSS 
+        //             //1)case you have to give { other , drums } order
+        //             //2)it only works for : nb_chanel=1 , evaluation_mthd : BSS_evaluation
+        //             "-c",
+        //             "{ sources_targtets : { vocals , drums , bass , other } , Full_songs : false , subset : test , nb_tracks : 1 }",
+                
+        //             "-d",                    
+        //             //NSGT_SCALE_FRAMES
+        //             "{ front_end_name : NSGT_SCALE_FRAMES , onset_det : custom , ksi_s : 44100 , min_scl : 256 , ovrlp_fact : 0.75 , middle_window : sg.tukey , matrix_form : 1 , multiproc : 1 }",
+
+                    
+        //             //STFT_custom
+        //             //"{ front_end_name : STFT_custom , a : 1024 , M : 4096 , support : 4096 }"
+
+        //             //STFT_scipy
+        //             //"{ front_end_name : scipy , a : 1024 , M : 4096 , support : 4096 }"
+
+        //             //NSGT_CQT
+        //             //"{ front_end_name : NSGT_CQT , ksi_s : 44100 , ksi_min : 32.07 , ksi_max : 10000 , B : 12 , matrix_form : 1 }"
+
+        //         ]
+                
+        //     }
+
+        // },
+
+        //EMAIL_SPAM NN
+        // {
+        //     "name": "Python: Current File",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${file}",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+
+        //     "linux": {
+
+        //         //train
+                
+        //         "args": [ 
+                
+        //             "--root" ,
+        //             "/home/nnanos/ASK2_Neural_Net/shuffled_dataset.csv", 
+
+        //             "--Model_type",
+        //             "RNN",
+
+
+        //             // "--word2vec_model_path",
+        //             // "/home/nnanos/Desktop/PYTHON/eksoruksh_dedomenwn/drive-download-20210509T145040Z-001/word2vec.model"
+
+        //             // "--model",
+        //             // "/home/nnanos/Desktop/PYTHON/eksoruksh_dedomenwn/drive-download-20210509T145040Z-001/output_fold_RNN",
+
+        //             "--epochs", 
+        //             "140",
+
+        //             "--batch-size",
+        //             "1024",
+
+        //             "--output" ,
+        //             "/home/nnanos/ASK2_Neural_Net/output_fold_RNN",
+
+        //             //"--no-cuda",
+                    
+        //         ]    
+                
+        //     }
+        
+        // }
+
+        
+    ]
+}
