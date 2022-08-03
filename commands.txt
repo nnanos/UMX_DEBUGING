@@ -1,0 +1,12 @@
+
+conda env create -n source-sep -f environment.yml
+
+
+sudo mount -t tmpfs -o rw,size=5G tmpfs /home/nnanos/ramdisk
+cp -r /media/nnanos/CC005DEA005DDBD0/musdb18_wav_small/train ~/ramdisk
+
+
+python data.py --root /home/nnanos/ramdisk --is-wav --target vocals
+
+
+python evaluate.py --model /home/nnanos/Open_unmix_model_params_inference/mymodel --outdir /home/nnanos/Open_unmix_model_params_inference/outdir --evaldir /home/nnanos/Open_unmix_model_params_inference/evaldir --root /home/nnanos/musdb18_wav --is-wav --targets vocals drums bass other --cores 6
